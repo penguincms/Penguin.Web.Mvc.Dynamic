@@ -1,0 +1,44 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <PackageLicenseFile>License.txt</PackageLicenseFile>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageProjectUrl>http://www.penguinms.com/Nuget</PackageProjectUrl>
+    <PackageIconUrl>http://www.penguinms.com/client/images/pg.png</PackageIconUrl>
+    <Version>1.0.0</Version>
+    <Description>None Available</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Areas\**" />
+    <Compile Remove="Views\**" />
+    <EmbeddedResource Remove="Areas\**" />
+    <EmbeddedResource Remove="Views\**" />
+    <None Remove="Areas\**" />
+    <None Remove="Views\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Penguin.Extensions.Collections" Version="1.1.7" />
+    <PackageReference Include="Penguin.Extensions.String" Version="1.1.8" />
+    <PackageReference Include="Penguin.Reflection.Serialization.Abstractions" Version="2.0.8" />
+    <PackageReference Include="Penguin.Services.Files" Version="1.0.4" />
+  </ItemGroup>
+
+ <ItemGroup>
+    <None Include="..\License.txt">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <WarningsAsErrors>NU1605, CS1591</WarningsAsErrors>
+    <DocumentationFile>C:\SVN\Framework\Nuget\Penguin.Web.Mvc.Dynamic\Penguin.Web.Mvc.Dynamic.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DebugType>full</DebugType>
+    <DocumentationFile>C:\SVN\Framework\Nuget\Penguin.Web.Mvc.Dynamic\Penguin.Web.Mvc.Dynamic.xml</DocumentationFile>
+  </PropertyGroup>
+</Project>
