@@ -1,29 +1,30 @@
 ﻿namespace Penguin.Web.Mvc.Dynamic
 {
+    /// <summary>
+    /// Represents the result of validating a single path
+    /// </summary>
     public class ViewValidationResult
     {
-        #region Properties
+        /// <summary>
+        /// If true, this path exists on disk
+        /// </summary>
+        public bool Exists { get; protected set; }
 
-        public bool Exists { get; set; }
+        /// <summary>
+        /// The path that was checked
+        /// </summary>
+        public string Path { get; protected set; }
 
-        public string Path { get; set; }
-
-        #endregion Properties
-
-        #region Constructors
-
-        public ViewValidationResult(string path, bool exists)
+        internal ViewValidationResult(string path, bool exists)
         {
             this.Path = path;
             this.Exists = exists;
         }
 
-        #endregion Constructors
-
-        #region Methods
-
+        /// <summary>
+        /// ToString returns the path and the bool representing its existence for debug view
+        /// </summary>
+        /// <returns>Returns the path and the bool representing its existence for debug view</returns>
         public override string ToString() => $"{this.Path} - {this.Exists}";
-
-        #endregion Methods
     }
 }

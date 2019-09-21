@@ -1,50 +1,66 @@
 ﻿using Penguin.Services.Files;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 
 namespace Penguin.Web.Mvc.Dynamic
 {
+    /// <summary>
+    /// Represents the result of validating a view path for existence
+    /// </summary>
     public class ViewPathValidation
     {
-        #region Properties
-
+        /// <summary>
+        /// True if any path was found
+        /// </summary>
         public bool FoundPath => this.ValidationResults.Any(r => r.Exists);
 
-        public List<ViewValidationResult> ValidationResults { get; set; }
+        /// <summary>
+        /// A collection of results for the checked paths
+        /// </summary>
+        public List<ViewValidationResult> ValidationResults { get; }
 
-        #endregion Properties
-
-        #region Constructors
-
-        public ViewPathValidation(string path, FileService fileService)
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="path"></param>
+        /// <param name="fileService"></param>
+        /// <param name="pathsToCheck">A list of {0} format strings to inject the path into</param>
+        public ViewPathValidation(string path, FileService fileService, List<string> pathsToCheck = null)
         {
+            Contract.Requires(path != null);
+            Contract.Requires(fileService != null);
+
             path = path.Replace(".cshtml", "");
 
-            if (path.StartsWith("~"))
+            if (path.StartsWith("~", System.StringComparison.Ordinal))
             {
                 path = path.Substring(1);
             }
 
             this.ValidationResults = new List<ViewValidationResult>();
 
-            List<string> toCheck = new List<string>()
+            pathsToCheck = pathsToCheck ?? new List<string>()
                 {
-                    "~/Client" + path + ".cshtml",
-                    "~" + path + ".cshtml",
-                    "~/Client.Template" + path + ".cshtml",
+                    "~/Client{0}.cshtml",
+                    "~{0}.cshtml",
+                    "~/Client.Template{0}.cshtml",
                 };
 
-            foreach (string thisPath in toCheck)
+            foreach (string thisPath in pathsToCheck)
             {
-                this.ValidationResults.Add(new ViewValidationResult(thisPath, fileService.Exists(thisPath)));
+                string toCheck = string.Format(CultureInfo.CurrentCulture, thisPath, path);
+                this.ValidationResults.Add(new ViewValidationResult(toCheck, fileService.Exists(toCheck)));
             }
         }
 
-        #endregion Constructors
-
-        #region Methods
-
+        /// <summary>
+        /// Returns the first matching result
+        /// </summary>
+        /// <param name="SurpressError">If false, throws a file not found exception if no matches are found</param>
+        /// <returns>A matching path or null if errors are surpressed</returns>
         public string Result(bool SurpressError = false)
         {
             if (!SurpressError && !this.FoundPath)
@@ -54,7 +70,5 @@ namespace Penguin.Web.Mvc.Dynamic
 
             return this.ValidationResults.FirstOrDefault(r => r.Exists)?.Path;
         }
-
-        #endregion Methods
     }
 }

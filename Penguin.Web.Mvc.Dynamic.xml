@@ -16,7 +16,7 @@
         </member>
         <member name="T:Penguin.Web.Mvc.Dynamic.DynamicRenderer">
             <summary>
-            Analyzes a serialized object and returns a list of validated view paths representing 
+            Analyzes a serialized object and returns a list of validated view paths representing
             Prefered rendering paths
             </summary>
         </member>
