@@ -1,4 +1,5 @@
-﻿using Penguin.Extensions.Collections;
+﻿using Microsoft.Extensions.FileProviders;
+using Penguin.Extensions.Collections;
 using Penguin.Extensions.Strings;
 using Penguin.Reflection.Abstractions;
 using Penguin.Reflection.Serialization.Abstractions.Interfaces;
@@ -55,8 +56,8 @@ namespace Penguin.Web.Mvc.Dynamic
         /// </summary>
         /// <param name="type">An optional override type</param>
         /// <param name="property">The IMetaProperty leading to this serialized object</param>
-        /// <param name="fileService">A file service used for checking for the existance of views</param>
-        public DynamicRenderer(IMetaType type, IMetaProperty property, FileService fileService) : this(new DynamicRendererSettings(type, property, fileService))
+        /// <param name="fileProvider">A file provider used for checking for the existance of views</param>
+        public DynamicRenderer(IMetaType type, IMetaProperty property, IFileProvider fileProvider) : this(new DynamicRendererSettings(type, property, fileProvider))
         {
         }
 
@@ -64,8 +65,8 @@ namespace Penguin.Web.Mvc.Dynamic
         /// Constructs a new instance of this renderer
         /// </summary>
         /// <param name="property">The IMetaProperty leading to this serialized object</param>
-        /// <param name="fileService">A file service used for checking for the existance of views </param>
-        public DynamicRenderer(IMetaProperty property, FileService fileService) : this(new DynamicRendererSettings(property, fileService))
+        /// <param name="fileProvider">A file provider used for checking for the existance of views </param>
+        public DynamicRenderer(IMetaProperty property, IFileProvider fileProvider) : this(new DynamicRendererSettings(property, fileProvider))
         {
         }
 
@@ -150,7 +151,7 @@ namespace Penguin.Web.Mvc.Dynamic
             foreach (string thisType in renderingOrder)
             {
                 string @namespace = thisType.Remove(Constants.RootNamespace + ".").Replace(".", "/");
-                ViewPathValidation pathValidation = new ViewPathValidation(settings.BasePath + @namespace, settings.FileService);
+                ViewPathValidation pathValidation = new ViewPathValidation(settings.BasePath + @namespace, settings.FileProvider);
 
                 foreach (ViewValidationResult result in pathValidation.ValidationResults)
                 {
@@ -161,7 +162,7 @@ namespace Penguin.Web.Mvc.Dynamic
             if (!this.HasMatch)
             {
                 this.IsDynamic = true;
-                ViewPathValidation pathValidation = new ViewPathValidation(settings.BasePath + settings.DynamicViewName, settings.FileService);
+                ViewPathValidation pathValidation = new ViewPathValidation(settings.BasePath + settings.DynamicViewName, settings.FileProvider);
 
                 foreach (ViewValidationResult result in pathValidation.ValidationResults)
                 {

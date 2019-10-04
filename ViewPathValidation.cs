@@ -1,4 +1,5 @@
-﻿using Penguin.Services.Files;
+﻿using Microsoft.Extensions.FileProviders;
+using Penguin.Services.Files;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.Globalization;
@@ -26,12 +27,12 @@ namespace Penguin.Web.Mvc.Dynamic
         ///
         /// </summary>
         /// <param name="path"></param>
-        /// <param name="fileService"></param>
+        /// <param name="fileProvider"></param>
         /// <param name="pathsToCheck">A list of {0} format strings to inject the path into</param>
-        public ViewPathValidation(string path, FileService fileService, List<string> pathsToCheck = null)
+        public ViewPathValidation(string path, IFileProvider fileProvider, List<string> pathsToCheck = null)
         {
             Contract.Requires(path != null);
-            Contract.Requires(fileService != null);
+            Contract.Requires(fileProvider != null);
 
             path = path.Replace(".cshtml", "");
 
@@ -44,15 +45,13 @@ namespace Penguin.Web.Mvc.Dynamic
 
             pathsToCheck = pathsToCheck ?? new List<string>()
                 {
-                    "~/Client{0}.cshtml",
-                    "~{0}.cshtml",
-                    "~/Client.Template{0}.cshtml",
+                    "~{0}.cshtml"
                 };
 
             foreach (string thisPath in pathsToCheck)
             {
                 string toCheck = string.Format(CultureInfo.CurrentCulture, thisPath, path);
-                this.ValidationResults.Add(new ViewValidationResult(toCheck, fileService.Exists(toCheck)));
+                this.ValidationResults.Add(new ViewValidationResult(toCheck, fileProvider.GetFileInfo(toCheck).Exists));
             }
         }
 

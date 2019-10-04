@@ -1,4 +1,5 @@
-﻿using Penguin.Reflection.Serialization.Abstractions.Interfaces;
+﻿using Microsoft.Extensions.FileProviders;
+using Penguin.Reflection.Serialization.Abstractions.Interfaces;
 using Penguin.Reflection.Serialization.Abstractions.Wrappers;
 using Penguin.Services.Files;
 using System;
@@ -29,9 +30,9 @@ namespace Penguin.Web.Mvc.Dynamic
         public bool ExactOnly { get; set; }
 
         /// <summary>
-        /// A fileService implementation for checking for views on disk
+        /// A File Provider implementation used for checking for view
         /// </summary>
-        public FileService FileService { get; set; }
+        public IFileProvider FileProvider { get; set; }
 
         /// <summary>
         /// The IMetaProperty that references the object being resolved
@@ -58,38 +59,38 @@ namespace Penguin.Web.Mvc.Dynamic
         /// </summary>
         /// <param name="type">An optional override type for the renderer</param>
         /// <param name="property">The IMetaProperty that references the object being resolved</param>
-        /// <param name="fileService">A file service used for checking for the existance of views</param>
-        public DynamicRendererSettings(IMetaType type, IMetaProperty property, FileService fileService)
+        /// <param name="fileProvider">A file provider used for checking for the existence of views</param>
+        public DynamicRendererSettings(IMetaType type, IMetaProperty property, IFileProvider fileProvider)
         {
             Contract.Requires(type != null);
 
             this.Type = type;
             this.TypeFullName = this.Type.FullName;
             this.Property = property;
-            this.FileService = fileService;
+            this.FileProvider = fileProvider;
         }
 
         /// <summary>
         /// Constructs a new instance of the settings object
         /// </summary>
         /// <param name="property">The IMetaProperty that references the object being resolved</param>
-        /// <param name="fileService">A file service used for checking for the existance of views</param>
-        public DynamicRendererSettings(IMetaProperty property, FileService fileService)
+        /// <param name="fileProvider">A file provider used for checking for views</param>
+        public DynamicRendererSettings(IMetaProperty property, IFileProvider fileProvider)
         {
             Contract.Requires(property != null);
 
             this.Type = property.Type;
             this.TypeFullName = this.Type.FullName;
             this.Property = property;
-            this.FileService = fileService;
+            this.FileProvider = fileProvider;
         }
 
         /// <summary>
         /// Constructs a new instance of the settings object
         /// </summary>
         /// <param name="type">An optional override type for the renderer</param>
-        /// <param name="fileService">A file service used for checking for the existance of views</param>
-        public DynamicRendererSettings(Type type, FileService fileService) : this(new MetaTypeHolder(type), null, fileService)
+        /// <param name="fileProvider">A file provider used for checking for the existence of views</param>
+        public DynamicRendererSettings(Type type, IFileProvider fileProvider) : this(new MetaTypeHolder(type), null, fileProvider)
         {
         }
 
@@ -97,8 +98,8 @@ namespace Penguin.Web.Mvc.Dynamic
         /// Constructs a new instance of the settings object
         /// </summary>
         /// <param name="property">The IMetaProperty that references the object being resolved</param>
-        /// <param name="fileService">A file service used for checking for the existance of views</param>
-        public DynamicRendererSettings(System.Reflection.PropertyInfo property, FileService fileService) : this(new MetaPropertyHolder(property), fileService)
+        /// <param name="fileProvider">A file provider used for checking for the existence of views</param>
+        public DynamicRendererSettings(System.Reflection.PropertyInfo property, IFileProvider fileProvider) : this(new MetaPropertyHolder(property), fileProvider)
         {
         }
 
@@ -106,12 +107,12 @@ namespace Penguin.Web.Mvc.Dynamic
         /// Constructs a new instance of the settings object
         /// </summary>
         /// <param name="o">An IMetaObject instance to render out</param>
-        /// <param name="fileService">A file service used for checking for the existance of views</param>
-        public DynamicRendererSettings(IMetaObject o, FileService fileService)
+        /// <param name="fileProvider">A file provider used for checking for the existence of views</param>
+        public DynamicRendererSettings(IMetaObject o, IFileProvider fileProvider)
         {
             Contract.Requires(o != null);
 
-            this.FileService = fileService;
+            this.FileProvider = fileProvider;
             this.Type = o.Type;
             this.TypeFullName = this.Type.FullName;
         }
@@ -120,10 +121,10 @@ namespace Penguin.Web.Mvc.Dynamic
         /// Constructs a new instance of the settings object
         /// </summary>
         /// <param name="typeFullName">If no type is set, the renderer can attempt to use this string value to determine routing</param>
-        /// <param name="fileService">A file service used for checking for the existance of views</param>
-        public DynamicRendererSettings(string typeFullName, FileService fileService)
+        /// <param name="fileProvider">A file provider used for checking for the existence of views</param>
+        public DynamicRendererSettings(string typeFullName, IFileProvider fileProvider)
         {
-            this.FileService = fileService;
+            this.FileProvider = fileProvider;
             this.TypeFullName = typeFullName;
         }
     }

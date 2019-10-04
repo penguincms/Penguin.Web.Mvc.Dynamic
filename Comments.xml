@@ -55,20 +55,20 @@
             A list of results for potential paths, as well as whether or not the paths exist on disk
             </summary>
         </member>
-        <member name="M:Penguin.Web.Mvc.Dynamic.DynamicRenderer.#ctor(Penguin.Reflection.Serialization.Abstractions.Interfaces.IMetaType,Penguin.Reflection.Serialization.Abstractions.Interfaces.IMetaProperty,Penguin.Services.Files.FileService)">
+        <member name="M:Penguin.Web.Mvc.Dynamic.DynamicRenderer.#ctor(Penguin.Reflection.Serialization.Abstractions.Interfaces.IMetaType,Penguin.Reflection.Serialization.Abstractions.Interfaces.IMetaProperty,Microsoft.Extensions.FileProviders.IFileProvider)">
             <summary>
             Constructs a new instance of this renderer
             </summary>
             <param name="type">An optional override type</param>
             <param name="property">The IMetaProperty leading to this serialized object</param>
-            <param name="fileService">A file service used for checking for the existance of views</param>
+            <param name="fileProvider">A file provider used for checking for the existance of views</param>
         </member>
-        <member name="M:Penguin.Web.Mvc.Dynamic.DynamicRenderer.#ctor(Penguin.Reflection.Serialization.Abstractions.Interfaces.IMetaProperty,Penguin.Services.Files.FileService)">
+        <member name="M:Penguin.Web.Mvc.Dynamic.DynamicRenderer.#ctor(Penguin.Reflection.Serialization.Abstractions.Interfaces.IMetaProperty,Microsoft.Extensions.FileProviders.IFileProvider)">
             <summary>
             Constructs a new instance of this renderer
             </summary>
             <param name="property">The IMetaProperty leading to this serialized object</param>
-            <param name="fileService">A file service used for checking for the existance of views </param>
+            <param name="fileProvider">A file provider used for checking for the existance of views </param>
         </member>
         <member name="M:Penguin.Web.Mvc.Dynamic.DynamicRenderer.#ctor(Penguin.Web.Mvc.Dynamic.DynamicRendererSettings)">
             <summary>
@@ -98,9 +98,9 @@
             Only render Dynamic or Exact Matches. No intermediate types
             </summary>
         </member>
-        <member name="P:Penguin.Web.Mvc.Dynamic.DynamicRendererSettings.FileService">
+        <member name="P:Penguin.Web.Mvc.Dynamic.DynamicRendererSettings.FileProvider">
             <summary>
-            A fileService implementation for checking for views on disk
+            A File Provider implementation used for checking for view
             </summary>
         </member>
         <member name="P:Penguin.Web.Mvc.Dynamic.DynamicRendererSettings.Property">
@@ -123,48 +123,48 @@
             If no type is set, the renderer can attempt to use this string value to determine routing
             </summary>
         </member>
-        <member name="M:Penguin.Web.Mvc.Dynamic.DynamicRendererSettings.#ctor(Penguin.Reflection.Serialization.Abstractions.Interfaces.IMetaType,Penguin.Reflection.Serialization.Abstractions.Interfaces.IMetaProperty,Penguin.Services.Files.FileService)">
+        <member name="M:Penguin.Web.Mvc.Dynamic.DynamicRendererSettings.#ctor(Penguin.Reflection.Serialization.Abstractions.Interfaces.IMetaType,Penguin.Reflection.Serialization.Abstractions.Interfaces.IMetaProperty,Microsoft.Extensions.FileProviders.IFileProvider)">
             <summary>
             Constructs a new instance of the settings object
             </summary>
             <param name="type">An optional override type for the renderer</param>
             <param name="property">The IMetaProperty that references the object being resolved</param>
-            <param name="fileService">A file service used for checking for the existance of views</param>
+            <param name="fileProvider">A file provider used for checking for the existence of views</param>
         </member>
-        <member name="M:Penguin.Web.Mvc.Dynamic.DynamicRendererSettings.#ctor(Penguin.Reflection.Serialization.Abstractions.Interfaces.IMetaProperty,Penguin.Services.Files.FileService)">
+        <member name="M:Penguin.Web.Mvc.Dynamic.DynamicRendererSettings.#ctor(Penguin.Reflection.Serialization.Abstractions.Interfaces.IMetaProperty,Microsoft.Extensions.FileProviders.IFileProvider)">
             <summary>
             Constructs a new instance of the settings object
             </summary>
             <param name="property">The IMetaProperty that references the object being resolved</param>
-            <param name="fileService">A file service used for checking for the existance of views</param>
+            <param name="fileProvider">A file provider used for checking for views</param>
         </member>
-        <member name="M:Penguin.Web.Mvc.Dynamic.DynamicRendererSettings.#ctor(System.Type,Penguin.Services.Files.FileService)">
+        <member name="M:Penguin.Web.Mvc.Dynamic.DynamicRendererSettings.#ctor(System.Type,Microsoft.Extensions.FileProviders.IFileProvider)">
             <summary>
             Constructs a new instance of the settings object
             </summary>
             <param name="type">An optional override type for the renderer</param>
-            <param name="fileService">A file service used for checking for the existance of views</param>
+            <param name="fileProvider">A file provider used for checking for the existence of views</param>
         </member>
-        <member name="M:Penguin.Web.Mvc.Dynamic.DynamicRendererSettings.#ctor(System.Reflection.PropertyInfo,Penguin.Services.Files.FileService)">
+        <member name="M:Penguin.Web.Mvc.Dynamic.DynamicRendererSettings.#ctor(System.Reflection.PropertyInfo,Microsoft.Extensions.FileProviders.IFileProvider)">
             <summary>
             Constructs a new instance of the settings object
             </summary>
             <param name="property">The IMetaProperty that references the object being resolved</param>
-            <param name="fileService">A file service used for checking for the existance of views</param>
+            <param name="fileProvider">A file provider used for checking for the existence of views</param>
         </member>
-        <member name="M:Penguin.Web.Mvc.Dynamic.DynamicRendererSettings.#ctor(Penguin.Reflection.Serialization.Abstractions.Interfaces.IMetaObject,Penguin.Services.Files.FileService)">
+        <member name="M:Penguin.Web.Mvc.Dynamic.DynamicRendererSettings.#ctor(Penguin.Reflection.Serialization.Abstractions.Interfaces.IMetaObject,Microsoft.Extensions.FileProviders.IFileProvider)">
             <summary>
             Constructs a new instance of the settings object
             </summary>
             <param name="o">An IMetaObject instance to render out</param>
-            <param name="fileService">A file service used for checking for the existance of views</param>
+            <param name="fileProvider">A file provider used for checking for the existence of views</param>
         </member>
-        <member name="M:Penguin.Web.Mvc.Dynamic.DynamicRendererSettings.#ctor(System.String,Penguin.Services.Files.FileService)">
+        <member name="M:Penguin.Web.Mvc.Dynamic.DynamicRendererSettings.#ctor(System.String,Microsoft.Extensions.FileProviders.IFileProvider)">
             <summary>
             Constructs a new instance of the settings object
             </summary>
             <param name="typeFullName">If no type is set, the renderer can attempt to use this string value to determine routing</param>
-            <param name="fileService">A file service used for checking for the existance of views</param>
+            <param name="fileProvider">A file provider used for checking for the existence of views</param>
         </member>
         <member name="P:Penguin.Web.Mvc.Dynamic.Paths.AdminRenderBase">
             <summary>
@@ -196,12 +196,12 @@
             A collection of results for the checked paths
             </summary>
         </member>
-        <member name="M:Penguin.Web.Mvc.Dynamic.ViewPathValidation.#ctor(System.String,Penguin.Services.Files.FileService,System.Collections.Generic.List{System.String})">
+        <member name="M:Penguin.Web.Mvc.Dynamic.ViewPathValidation.#ctor(System.String,Microsoft.Extensions.FileProviders.IFileProvider,System.Collections.Generic.List{System.String})">
              <summary>
             
              </summary>
              <param name="path"></param>
-             <param name="fileService"></param>
+             <param name="fileProvider"></param>
              <param name="pathsToCheck">A list of {0} format strings to inject the path into</param>
         </member>
         <member name="M:Penguin.Web.Mvc.Dynamic.ViewPathValidation.Result(System.Boolean)">
