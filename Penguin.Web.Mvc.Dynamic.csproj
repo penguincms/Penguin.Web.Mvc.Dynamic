@@ -7,6 +7,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <AssemblyName>Penguin.Web.Mvc.Dynamic</AssemblyName>
     <RootNamespace>Penguin.Web.Mvc.Dynamic</RootNamespace>
+    <DocumentationFile>Penguin.Web.Mvc.Dynamic.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Compile Remove="Areas\**" />
