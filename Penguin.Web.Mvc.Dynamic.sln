@@ -1,25 +1,34 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
-VisualStudioVersion = 16.0.29306.81
+VisualStudioVersion = 16.6.30114.105
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Penguin.Web.Mvc.Dynamic", "Penguin.Web.Mvc.Dynamic.csproj", "{F4F5FAC2-5923-409B-9A7E-1FDDBF6AF03F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Penguin.Web.Mvc.Dynamic", "Penguin.Web.Mvc.Dynamic.csproj", "{F9B229A6-362A-4701-B927-02C661E20B15}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
 		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{F4F5FAC2-5923-409B-9A7E-1FDDBF6AF03F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F4F5FAC2-5923-409B-9A7E-1FDDBF6AF03F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F4F5FAC2-5923-409B-9A7E-1FDDBF6AF03F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F4F5FAC2-5923-409B-9A7E-1FDDBF6AF03F}.Release|Any CPU.Build.0 = Release|Any CPU
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {CE22785A-18AF-4902-91E6-93035C7B8580}
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F9B229A6-362A-4701-B927-02C661E20B15}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9B229A6-362A-4701-B927-02C661E20B15}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9B229A6-362A-4701-B927-02C661E20B15}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{F9B229A6-362A-4701-B927-02C661E20B15}.Debug|x64.Build.0 = Debug|Any CPU
+		{F9B229A6-362A-4701-B927-02C661E20B15}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F9B229A6-362A-4701-B927-02C661E20B15}.Debug|x86.Build.0 = Debug|Any CPU
+		{F9B229A6-362A-4701-B927-02C661E20B15}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9B229A6-362A-4701-B927-02C661E20B15}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9B229A6-362A-4701-B927-02C661E20B15}.Release|x64.ActiveCfg = Release|Any CPU
+		{F9B229A6-362A-4701-B927-02C661E20B15}.Release|x64.Build.0 = Release|Any CPU
+		{F9B229A6-362A-4701-B927-02C661E20B15}.Release|x86.ActiveCfg = Release|Any CPU
+		{F9B229A6-362A-4701-B927-02C661E20B15}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
