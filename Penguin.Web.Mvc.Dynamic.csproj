@@ -17,7 +17,7 @@
     <None Remove="Areas\**" />
     <None Remove="Views\**" />
     <PackageReference Include="Penguin.Extensions.Collections" Version="5.0.6-TAHULSY" />
-    <PackageReference Include="Penguin.Reflection.Serialization.Abstractions" Version="5.0.6-TAJHTXV" />
+    <PackageReference Include="Penguin.Reflection.Serialization.Abstractions" Version="5.0.6-TAKDH3F" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.FileProviders.Abstractions" Version="3.1.1" />
