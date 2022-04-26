@@ -4,7 +4,7 @@
     <PackageProjectUrl>https://github.com/PenguinCMS/Penguin.Web.Mvc.Dynamic</PackageProjectUrl>
     <Version>5.0.5</Version>
     <Description>Not Available</Description>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFrameworks>netstandard2.0;netstandard2.1;net5.0</TargetFrameworks>
     <AssemblyName>Penguin.Web.Mvc.Dynamic</AssemblyName>
     <RootNamespace>Penguin.Web.Mvc.Dynamic</RootNamespace>
     <DocumentationFile>Penguin.Web.Mvc.Dynamic.xml</DocumentationFile>
@@ -16,8 +16,8 @@
     <EmbeddedResource Remove="Views\**" />
     <None Remove="Areas\**" />
     <None Remove="Views\**" />
-    <PackageReference Include="Penguin.Extensions.Collections" Version="5.0.6-TAVV3GD" />
-    <PackageReference Include="Penguin.Reflection.Serialization.Abstractions" Version="5.0.6-TAVV3GD" />
+    <PackageReference Include="Penguin.Extensions.Collections" Version="5.0.6-TAW5FE4" />
+    <PackageReference Include="Penguin.Reflection.Serialization.Abstractions" Version="5.0.6-TAW5FE4" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.FileProviders.Abstractions" Version="3.1.1" />
