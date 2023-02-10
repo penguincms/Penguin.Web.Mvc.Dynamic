@@ -41,7 +41,7 @@ namespace Penguin.Web.Mvc.Dynamic
         /// <summary>
         /// Render base types before inherited types
         /// </summary>
-        public bool StartAtBottom { get; set; } = false;
+        public bool StartAtBottom { get; set; }
 
         /// <summary>
         /// An optional override type for the renderer
@@ -63,10 +63,10 @@ namespace Penguin.Web.Mvc.Dynamic
         {
             Contract.Requires(type != null);
 
-            this.Type = type;
-            this.TypeFullName = this.Type.FullName;
-            this.Property = property;
-            this.FileProvider = fileProvider;
+            Type = type;
+            TypeFullName = Type.FullName;
+            Property = property;
+            FileProvider = fileProvider;
         }
 
         /// <summary>
@@ -78,10 +78,10 @@ namespace Penguin.Web.Mvc.Dynamic
         {
             Contract.Requires(property != null);
 
-            this.Type = property.Type;
-            this.TypeFullName = this.Type.FullName;
-            this.Property = property;
-            this.FileProvider = fileProvider;
+            Type = property.Type;
+            TypeFullName = Type.FullName;
+            Property = property;
+            FileProvider = fileProvider;
         }
 
         /// <summary>
@@ -111,9 +111,9 @@ namespace Penguin.Web.Mvc.Dynamic
         {
             Contract.Requires(o != null);
 
-            this.FileProvider = fileProvider;
-            this.Type = o.Type;
-            this.TypeFullName = this.Type.FullName;
+            FileProvider = fileProvider;
+            Type = o.Type;
+            TypeFullName = Type.FullName;
         }
 
         /// <summary>
@@ -123,8 +123,8 @@ namespace Penguin.Web.Mvc.Dynamic
         /// <param name="fileProvider">A file provider used for checking for the existence of views</param>
         public DynamicRendererSettings(string typeFullName, IFileProvider fileProvider)
         {
-            this.FileProvider = fileProvider;
-            this.TypeFullName = typeFullName;
+            FileProvider = fileProvider;
+            TypeFullName = typeFullName;
         }
     }
 }

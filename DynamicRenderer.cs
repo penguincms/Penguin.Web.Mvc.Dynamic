@@ -18,7 +18,7 @@ namespace Penguin.Web.Mvc.Dynamic
         /// <summary>
         /// A list of ViewResults that exist on disk
         /// </summary>
-        public IEnumerable<ViewValidationResult> ExistingHandlers => this.Results.Where(r => r.Exists);
+        public IEnumerable<ViewValidationResult> ExistingHandlers => Results.Where(r => r.Exists);
 
         /// <summary>
         /// Figure out what this does and comment it
@@ -28,7 +28,7 @@ namespace Penguin.Web.Mvc.Dynamic
         /// <summary>
         /// True if there are any views set up to handle this object
         /// </summary>
-        public bool HasMatch => this.Results.Any(r => r.Exists);
+        public bool HasMatch => Results.Any(r => r.Exists);
 
         /// <summary>
         /// True if the only view that can handle this object is the recursive view
@@ -38,12 +38,12 @@ namespace Penguin.Web.Mvc.Dynamic
         /// <summary>
         /// Chooses the first existing view with the highest priority
         /// </summary>
-        public ViewValidationResult Match => this.Results.Where(r => r.Exists).First();
+        public ViewValidationResult Match => Results.Where(r => r.Exists).First();
 
         /// <summary>
         /// The path to the view of highest matching priority
         /// </summary>
-        public string MatchedPath => this.Match.Path;
+        public string MatchedPath => Match.Path;
 
         /// <summary>
         /// A list of results for potential paths, as well as whether or not the paths exist on disk
@@ -93,14 +93,7 @@ namespace Penguin.Web.Mvc.Dynamic
 
                 if (settings.Type.CoreType == CoreType.Collection)
                 {
-                    if (settings.Type.IsArray)
-                    {
-                        Prepend = "Array.";
-                    }
-                    else
-                    {
-                        Prepend = $"{settings.Type.Namespace}.{settings.Type.Name.To("`")}.";
-                    }
+                    Prepend = settings.Type.IsArray ? "Array." : $"{settings.Type.Namespace}.{settings.Type.Name.To("`")}.";
                 }
 
                 do
@@ -145,27 +138,27 @@ namespace Penguin.Web.Mvc.Dynamic
                 }
             }
 
-            this.Results = new List<ViewValidationResult>();
+            Results = new List<ViewValidationResult>();
 
             foreach (string thisType in renderingOrder)
             {
                 string @namespace = thisType.Remove(Constants.RootNamespace + ".").Replace(".", "/");
-                ViewPathValidation pathValidation = new ViewPathValidation(settings.BasePath + @namespace, settings.FileProvider);
+                ViewPathValidation pathValidation = new(settings.BasePath + @namespace, settings.FileProvider);
 
                 foreach (ViewValidationResult result in pathValidation.ValidationResults)
                 {
-                    this.Results.Add(result);
+                    Results.Add(result);
                 }
             }
 
-            if (!this.HasMatch)
+            if (!HasMatch)
             {
-                this.IsDynamic = true;
-                ViewPathValidation pathValidation = new ViewPathValidation(settings.BasePath + settings.DynamicViewName, settings.FileProvider);
+                IsDynamic = true;
+                ViewPathValidation pathValidation = new(settings.BasePath + settings.DynamicViewName, settings.FileProvider);
 
                 foreach (ViewValidationResult result in pathValidation.ValidationResults)
                 {
-                    this.Results.Add(result);
+                    Results.Add(result);
                 }
             }
         }

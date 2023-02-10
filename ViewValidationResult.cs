@@ -17,14 +17,17 @@
 
         internal ViewValidationResult(string path, bool exists)
         {
-            this.Path = path;
-            this.Exists = exists;
+            Path = path;
+            Exists = exists;
         }
 
         /// <summary>
         /// ToString returns the path and the bool representing its existence for debug view
         /// </summary>
         /// <returns>Returns the path and the bool representing its existence for debug view</returns>
-        public override string ToString() => $"{this.Path} - {this.Exists}";
+        public override string ToString()
+        {
+            return $"{Path} - {Exists}";
+        }
     }
 }
